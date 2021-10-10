@@ -14,7 +14,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tipBtn.setOnClickListener {
-            binding.output.text = outputString(binding.billAmount.toString().toDouble())
+           var amount: Double? = null
+
+            if(binding.billAmount.text.isEmpty()) {
+                binding.output.text = amount?.let { it1 -> outputString(it1) }
+                binding.output.text = "YOU MUST ENTER A BILL AMOUNT"
+            } else {
+                amount = binding.billAmount.text.toString().toDouble()
+                binding.output.text = outputString(amount)
+            }
         }
     }
 
@@ -34,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun outputString(bill: Double): String {
+
         if (bill != null) {
             var ten = tenPercentTip(bill)
             var fifteen = fifteenPercentTip(bill)
@@ -42,5 +51,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             return "YOU MUST ENTER A BILL AMOUNT"
         }
+
     }
 }

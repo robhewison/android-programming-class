@@ -43,14 +43,10 @@ class MainActivity : AppCompatActivity() {
 
     fun outputString(bill: Double): String {
 
-        if (bill != null) {
-            var ten = tenPercentTip(bill)
-            var fifteen = fifteenPercentTip(bill)
-            var twenty = twentyPercentTip(bill)
-            return "The tips are as follows:\n\n 10% = $ten\n 15% = $fifteen\n 20% = $twenty"
-        } else {
-            return "YOU MUST ENTER A BILL AMOUNT"
-        }
+        var ten = tenPercentTip(bill)
+        var fifteen = fifteenPercentTip(bill)
+        var twenty = twentyPercentTip(bill)
+        return "The tips are as follows:\n\n 10% = $ten\n 15% = $fifteen\n 20% = $twenty"
 
     }
 }

@@ -28,8 +28,8 @@ class MainFragment : Fragment() {
         var name: String? = null
 
         binding.button.setOnClickListener() {
-            if(binding.nameEnterField.text.isEmpty()) {
-                binding.displayNames.text = "Enter a name into text field"
+            if(binding.nameEnterField.text.isBlank()) {
+                binding.displayNames.text = "No names to display"
             } else {
                 name = binding.nameEnterField.text.toString()
                 viewModel.addName(name!!)
@@ -45,7 +45,6 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.displayNames.text = viewModel.names.toString()
-        // TODO: Use the ViewModel
     }
 
 }

@@ -12,10 +12,6 @@ android {
         dataBinding true
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     defaultConfig {
         applicationId "com.rwhewison.addnamesavedata2"
         minSdk 26

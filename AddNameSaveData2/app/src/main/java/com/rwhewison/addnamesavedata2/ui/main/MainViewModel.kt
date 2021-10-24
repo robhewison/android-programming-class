@@ -4,27 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
-    //var names = "No names to display"
-    var names: MutableLiveData<String> = MutableLiveData()
-
-    /*
-    fun addNames(name: String) {
-        names = names + "\n" + name
-    }
+    var counter: Int = 0
+    var names: MutableLiveData<String> = MutableLiveData("No names to display")
 
     fun addName(name: String) {
-        if(names == "No names to display") {
-            names = ""
+        if (counter == 0) {
+            names.value = ""
         }
-        names = names + "\n" + name
-        //add functionality if there are no names included
-    }
-     */
-
-    fun addName(name: String) {
         var currentNames = names.value
         names.value = currentNames + "\n" + name
+        counter++
     }
 
     fun getNameList(): MutableLiveData<String> {

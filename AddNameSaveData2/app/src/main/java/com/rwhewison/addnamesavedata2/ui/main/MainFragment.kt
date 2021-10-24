@@ -7,7 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
+import com.rwhewison.addnamesavedata2.R
 import com.rwhewison.addnamesavedata2.databinding.MainFragmentBinding
+import com.rwhewison.addnamesavedata2.BR.myViewModel
+import com.rwhewison.addnamesavedata2.databinding.MainActivityBinding
 
 class MainFragment : Fragment() {
 
@@ -15,15 +19,16 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private var _binding: MainFragmentBinding? = null
-    private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
+    lateinit var binding: MainFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
+        binding.setLifecycleOwner(this)
+
 
         var name: String? = null
 
@@ -34,18 +39,15 @@ class MainFragment : Fragment() {
                 name = binding.nameEnterField.text.toString()
                 viewModel.addName(name!!)
             }
-            //binding.displayNames.text = viewModel.names.toString()
         }
         return binding.root
 
-        //return inflater.inflate(R.layout.main_fragment, container, false) //default value
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-        //binding.displayNames.text = viewModel.names.toString()
+        binding.setVariable(myViewModel, viewModel)
 
         val resultObserver = Observer<String> {
             names -> binding.displayNames.text = names.toString()

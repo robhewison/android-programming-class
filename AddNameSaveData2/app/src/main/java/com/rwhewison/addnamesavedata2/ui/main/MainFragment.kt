@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
 
         var name: String? = null

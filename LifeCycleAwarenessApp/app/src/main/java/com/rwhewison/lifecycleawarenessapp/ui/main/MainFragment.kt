@@ -26,13 +26,14 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         return binding.root
         //return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        lifecycle.addObserver(DemoObserver())
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.setVariable(myViewModel, viewModel)
         // TODO: Use the ViewModel

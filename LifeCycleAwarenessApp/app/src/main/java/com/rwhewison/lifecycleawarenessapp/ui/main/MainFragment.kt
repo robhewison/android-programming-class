@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import com.rwhewison.lifecycleawarenessapp.R
 import com.rwhewison.lifecycleawarenessapp.databinding.MainFragmentBinding
 import com.rwhewison.lifecycleawarenessapp.BR.myViewModel
@@ -28,7 +31,6 @@ class MainFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
         binding.lifecycleOwner = this
         return binding.root
-        //return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,7 +38,6 @@ class MainFragment : Fragment() {
         lifecycle.addObserver(DemoObserver())
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.setVariable(myViewModel, viewModel)
-        // TODO: Use the ViewModel
     }
 
 }

@@ -9,10 +9,21 @@
         android:id="@+id/secondFragment"
         android:name="com.rwhewison.navigationproject.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second" >
+        <argument
+            android:name="message"
+            app:argType="string"
+            android:defaultValue="Image" />
+        <argument android:name="imagePass"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.rwhewison.navigationproject.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/mainToSecond"
+            app:destination="@id/secondFragment" />
+    </fragment>
 </navigation>

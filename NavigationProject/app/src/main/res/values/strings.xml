@@ -8,4 +8,5 @@
     <string name="first_image">first-image</string>
     <string name="second_image">second-image</string>
     <string name="third_image">third-image</string>
+    <string name="textviewfrag2">Image 1</string>
 </resources>

@@ -32,11 +32,7 @@ class MainActivity : AppCompatActivity() {
         adapter = RecyclerAdapter()
         binding.contentMain.recyclerView.adapter = adapter
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-        //viewModel.addTitles(Data.getRandomizedTitles())
-        //viewModel.addDetails(Data.getRandomizedDetails())
-        //viewModel.addImages(Data.getRandomizedImages())
-
+        
         Data.getRandomTitle()
         Data.getRandomDetails()
         Data.getRandomImages()

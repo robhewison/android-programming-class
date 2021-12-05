@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/12484/androidclass/Contacts-Project/app/src/main/res/layout/main_activity.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/12484/androidclass/Contacts-Project/app/src/main/res/layout/main_fragment.xml" value="0.2791666666666667" />
+        <entry key="..\:/Users/12484/androidclass/Contacts-Project/app/src/main/res/layout/product_list_item.xml" value="0.2791666666666667" />
         <entry key="..\:/Users/17347/AndroidPublic/class_book_examples/chapter74_75_RoomDemo/app/src/main/res/layout/main_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/17347/AndroidPublic/class_book_examples/chapter74_75_RoomDemo/app/src/main/res/layout/product_list_item.xml" value="0.36666666666666664" />
       </map>

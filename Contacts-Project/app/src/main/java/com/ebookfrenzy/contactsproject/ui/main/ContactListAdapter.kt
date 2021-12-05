@@ -5,35 +5,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.ebookfrenzy.contactsproject.Product
+import com.ebookfrenzy.contactsproject.Contact
 import com.ebookfrenzy.contactsproject.R
 
-class ProductListAdapter(private val productItemLayout: Int) :
-    RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
+class ContactListAdapter(private val contactItemLayout: Int) :
+    RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
 
-    private var productList: List<Product>? = null
+    private var contactList: List<Contact>? = null
 
     override fun onBindViewHolder(holder: ViewHolder, listPosition: Int) {
         val item = holder.item
-        productList.let {
-            item.text = it!![listPosition].productName
+        contactList.let {
+            item.text = it!![listPosition].contactName
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            productItemLayout, parent, false)
+            contactItemLayout, parent, false)
         return ViewHolder(view)
     }
 
-    fun setProductList(products: List<Product>) {
-        productList = products
+    fun setProductList(products: List<Contact>) {
+        contactList = products
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return if (productList == null) 0 else productList!!.size
+        return if (contactList == null) 0 else contactList!!.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

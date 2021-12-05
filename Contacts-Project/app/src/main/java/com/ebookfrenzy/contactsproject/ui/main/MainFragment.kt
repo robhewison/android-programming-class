@@ -9,8 +9,8 @@ import com.ebookfrenzy.contactsproject.R
 
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ebookfrenzy.contactsproject.Product
 import androidx.fragment.app.viewModels
+import com.ebookfrenzy.contactsproject.Contact
 
 import java.util.*
 
@@ -18,7 +18,7 @@ import com.ebookfrenzy.contactsproject.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    private var adapter: ProductListAdapter? = null
+    private var adapter: ContactListAdapter? = null
 
     companion object {
         fun newInstance() = MainFragment()
@@ -46,42 +46,58 @@ class MainFragment : Fragment() {
 
     private fun listenerSetup() {
 
+        //ADD BUTTON FUNCTIONALITY
         binding.addButton.setOnClickListener {
-            val name = binding.productName.text.toString()
-            val quantity = binding.productQuantity.text.toString()
+            val name = binding.contactName.text.toString()
+            val quantity = binding.personPhoneNum.text.toString()
 
             if (name != "" && quantity != "") {
-                val product = Product(name, Integer.parseInt(quantity))
-                viewModel.insertProduct(product)
+                val contact = Contact(name, Integer.parseInt(quantity))
+                viewModel.insertContact(contact)
                 clearFields()
             } else {
                 binding.productID.text = "Incomplete information"
             }
         }
 
-        binding.findButton.setOnClickListener { viewModel.findProduct(binding.productName.text.toString()) }
+        //FIND BUTTON FUNCTIONALITY
+        binding.findButton.setOnClickListener { viewModel.findContact(binding.contactName.text.toString()) }
 
-        binding.deleteButton.setOnClickListener {
-            viewModel.deleteProduct(binding.productName.text.toString())
-            clearFields()
+        //ASC BUTTON FUNCTIONALITY
+        binding.ascButton.setOnClickListener {
+
         }
+
+        //DESC BUTTON FUNCTIONALITY
+        binding.descButton.setOnClickListener {
+
+        }
+
+        //TODO: DELETE BUTTON FUNCTIONALITY (TRASH CAN)
+        /*
+            binding.deleteButton.setOnClickListener {
+            viewModel.deleteContact(binding.contactName.text.toString())
+            clearFields()
+            }
+         */
+
     }
 
     private fun observerSetup() {
 
-        viewModel.getAllProducts()?.observe(this, Observer { products ->
-            products?.let  {
+        viewModel.getAllContacts()?.observe(this, Observer { contacts ->
+            contacts?.let  {
                 adapter?.setProductList(it)
             }
         })
 
-        viewModel.getSearchResults().observe(this, Observer { products ->
+        viewModel.getSearchResults().observe(this, Observer { contacts ->
 
-            products?.let {
+            contacts?.let {
                 if (it.isNotEmpty()) {
                     binding.productID.text = String.format(Locale.US, "%d", it[0].id)
-                    binding.productName.setText(it[0].productName)
-                    binding.productQuantity.setText(String.format(Locale.US, "%d",
+                    binding.contactName.setText(it[0].contactName)
+                    binding.personPhoneNum.setText(String.format(Locale.US, "%d",
                         it[0].quantity))
                 } else {
                     binding.productID.text = "No Match"
@@ -91,14 +107,14 @@ class MainFragment : Fragment() {
     }
 
     private fun recyclerSetup() {
-        adapter = ProductListAdapter(R.layout.product_list_item)
+        adapter = ContactListAdapter(R.layout.product_list_item)
         binding.productRecycler.layoutManager = LinearLayoutManager(context)
         binding.productRecycler.adapter = adapter
     }
 
     private fun clearFields() {
         binding.productID.text = ""
-        binding.productName.setText("")
-        binding.productQuantity.setText("")
+        binding.contactName.setText("")
+        binding.personPhoneNum.setText("")
     }
 }

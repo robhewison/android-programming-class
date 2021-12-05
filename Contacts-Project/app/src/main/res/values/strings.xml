@@ -6,5 +6,6 @@
     <string name="product_quantity">Product Quantity</string>
     <string name="add_string">Add</string>
     <string name="find_string">Find</string>
-    <string name="delete_string">Delete</string>
+    <string name="delete_string">Asc</string>
+    <string name="desc">Desc</string>
 </resources>

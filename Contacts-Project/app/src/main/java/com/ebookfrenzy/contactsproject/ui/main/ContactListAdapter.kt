@@ -27,7 +27,7 @@ class ContactListAdapter(private val contactItemLayout: Int) :
         return ViewHolder(view)
     }
 
-    fun setProductList(products: List<Contact>) {
+    fun setContactList(products: List<Contact>) {
         contactList = products
         notifyDataSetChanged()
     }

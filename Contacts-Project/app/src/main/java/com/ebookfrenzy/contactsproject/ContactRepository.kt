@@ -29,14 +29,14 @@ class ContactRepository(application: Application) {
         contactDao?.insertContact(contact)
     }
 
-    fun deleteContact(name: String) {
+    fun deleteContact(id: Int) {
         coroutineScope.launch(Dispatchers.IO) {
-            asyncDelete(name)
+            asyncDelete(id)
         }
     }
 
-    private suspend fun asyncDelete(name: String) {
-        contactDao?.deleteContact(name)
+    private suspend fun asyncDelete(id: Int) {
+        contactDao?.deleteContact(id)
     }
 
     fun findContact(name: String) {

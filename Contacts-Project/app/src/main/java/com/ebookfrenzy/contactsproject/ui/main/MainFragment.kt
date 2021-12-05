@@ -49,31 +49,35 @@ class MainFragment : Fragment() {
         //ADD BUTTON FUNCTIONALITY
         binding.addButton.setOnClickListener {
             val name = binding.contactName.text.toString()
-            val quantity = binding.personPhoneNum.text.toString()
+            val phoneNum = binding.personPhoneNum.text.toString()
 
-            if (name != "" && quantity != "") {
-                val contact = Contact(name, Integer.parseInt(quantity))
+            if (name != "" && phoneNum != "") {
+                val contact = Contact(name, Integer.parseInt(phoneNum))
                 viewModel.insertContact(contact)
                 clearFields()
             } else {
-                binding.productID.text = "Incomplete information"
+                //binding.productID.text = "Incomplete information"
+                //TODO: Notify user somehow that the name or phone number were empty
             }
         }
 
         //FIND BUTTON FUNCTIONALITY
-        binding.findButton.setOnClickListener { viewModel.findContact(binding.contactName.text.toString()) }
+        binding.findButton.setOnClickListener {
+            viewModel.findContact(binding.contactName.text.toString())
+            //TODO: find contactName and phoneNumber to put in cardView recyclerview
+        }
 
         //ASC BUTTON FUNCTIONALITY
         binding.ascButton.setOnClickListener {
-
+            //TODO: display contacts in ascending order
         }
 
         //DESC BUTTON FUNCTIONALITY
         binding.descButton.setOnClickListener {
-
+            //TODO: display contacts in descending order
         }
 
-        //TODO: DELETE BUTTON FUNCTIONALITY (TRASH CAN)
+        //TODO: DELETE BUTTON FUNCTIONALITY (TRASH CAN... DO THIS LAST)
         /*
             binding.deleteButton.setOnClickListener {
             viewModel.deleteContact(binding.contactName.text.toString())
@@ -85,9 +89,11 @@ class MainFragment : Fragment() {
 
     private fun observerSetup() {
 
+        //TODO: Find out what to do here...
+
         viewModel.getAllContacts()?.observe(this, Observer { contacts ->
             contacts?.let  {
-                adapter?.setProductList(it)
+                adapter?.setContactList(it)
             }
         })
 
@@ -107,6 +113,7 @@ class MainFragment : Fragment() {
     }
 
     private fun recyclerSetup() {
+        //TODO: I think to use card view you would replace the adapter below with card view
         adapter = ContactListAdapter(R.layout.product_list_item)
         binding.productRecycler.layoutManager = LinearLayoutManager(context)
         binding.productRecycler.adapter = adapter

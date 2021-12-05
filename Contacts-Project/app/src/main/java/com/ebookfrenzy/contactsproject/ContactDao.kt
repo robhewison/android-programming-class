@@ -13,7 +13,7 @@ interface ContactDao {
 
     //Gets contact of a specific name
     @Query("SELECT * FROM contacts WHERE contactName LIKE '%' || :name || '%'")
-    fun findContacts(name: String): List<Contact>
+    fun findContact(name: String): List<Contact>
 
     //Deletes contact of a specific Id value
     @Query("DELETE FROM contacts WHERE contactId = :id")

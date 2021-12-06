@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
 
     private fun listenerSetup() {
 
-        //ADD BUTTON FUNCTIONALITY
+        //TODO: ADD BUTTON FUNCTIONALITY
         binding.addButton.setOnClickListener {
             val name = binding.contactName.text.toString()
             val phoneNum = binding.personPhoneNum.text.toString()
@@ -61,18 +61,18 @@ class MainFragment : Fragment() {
             }
         }
 
-        //FIND BUTTON FUNCTIONALITY
+        //TODO: FIND BUTTON FUNCTIONALITY
         binding.findButton.setOnClickListener {
             viewModel.findContact(binding.contactName.text.toString())
             //TODO: find contactName and phoneNumber to put in cardView recyclerview
         }
 
-        //ASC BUTTON FUNCTIONALITY
+        //TODO: ASC BUTTON FUNCTIONALITY
         binding.ascButton.setOnClickListener {
             //TODO: display contacts in ascending order
         }
 
-        //DESC BUTTON FUNCTIONALITY
+        //TODO: DESC BUTTON FUNCTIONALITY
         binding.descButton.setOnClickListener {
             //TODO: display contacts in descending order
         }
@@ -101,12 +101,12 @@ class MainFragment : Fragment() {
 
             contacts?.let {
                 if (it.isNotEmpty()) {
-                    binding.productID.text = String.format(Locale.US, "%d", it[0].id)
-                    binding.contactName.setText(it[0].contactName)
-                    binding.personPhoneNum.setText(String.format(Locale.US, "%d",
-                        it[0].quantity))
+                    //binding.productID.text = String.format(Locale.US, "%d", it[0].id)
+                    //binding.contactName.setText(it[0].contactName)
+                    //binding.personPhoneNum.setText(String.format(Locale.US, "%d",
+                        //it[0].quantity))
                 } else {
-                    binding.productID.text = "No Match"
+                    //binding.productID.text = "No Match"
                 }
             }
         })
@@ -114,13 +114,13 @@ class MainFragment : Fragment() {
 
     private fun recyclerSetup() {
         //TODO: I think to use card view you would replace the adapter below with card view
-        adapter = ContactListAdapter(R.layout.product_list_item)
+        adapter = ContactListAdapter(R.layout.card_layout)
         binding.productRecycler.layoutManager = LinearLayoutManager(context)
         binding.productRecycler.adapter = adapter
     }
 
     private fun clearFields() {
-        binding.productID.text = ""
+        //binding.productID.text = ""
         binding.contactName.setText("")
         binding.personPhoneNum.setText("")
     }

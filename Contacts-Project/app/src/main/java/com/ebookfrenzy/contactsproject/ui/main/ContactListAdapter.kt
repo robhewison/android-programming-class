@@ -11,6 +11,8 @@ import com.ebookfrenzy.contactsproject.R
 class ContactListAdapter(private val contactItemLayout: Int) :
     RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
 
+    //TODO: Take a look at the RecyclerAdapter.kt in RecycleviewIntent. Similar function
+
     private var contactList: List<Contact>? = null
 
     override fun onBindViewHolder(holder: ViewHolder, listPosition: Int) {
@@ -20,6 +22,7 @@ class ContactListAdapter(private val contactItemLayout: Int) :
         }
     }
 
+    //replaced contactItemLayout with R.layout.card_layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -27,8 +30,8 @@ class ContactListAdapter(private val contactItemLayout: Int) :
         return ViewHolder(view)
     }
 
-    fun setContactList(products: List<Contact>) {
-        contactList = products
+    fun setContactList(contacts: List<Contact>) {
+        contactList = contacts
         notifyDataSetChanged()
     }
 
@@ -37,6 +40,6 @@ class ContactListAdapter(private val contactItemLayout: Int) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var item: TextView = itemView.findViewById(R.id.product_row)
+        var item: TextView = itemView.findViewById(R.id.contactNameCard) //product_row
     }
 }

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
-import com.rwhewison.recycleview.databinding.ActivityMain2Bindinggi
+import com.rwhewison.recycleview.databinding.ActivityMain2Binding
 
 class MainActivity2 : AppCompatActivity() {
 

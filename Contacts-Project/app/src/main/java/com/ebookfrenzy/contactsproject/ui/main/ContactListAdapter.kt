@@ -11,14 +11,18 @@ import com.ebookfrenzy.contactsproject.R
 class ContactListAdapter(private val contactItemLayout: Int) :
     RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
 
-    //TODO: Take a look at the RecyclerAdapter.kt in RecycleviewIntent. Similar function
-
-    private var contactList: List<Contact>? = null
+    companion object {
+        private var contactList: List<Contact>? = null
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, listPosition: Int) {
         val item = holder.item
+        val item2 = holder.item2
         contactList.let {
             item.text = it!![listPosition].contactName
+        }
+        contactList.let {
+            item2.text = it!![listPosition].phoneNumber.toString()
         }
     }
 
@@ -40,6 +44,7 @@ class ContactListAdapter(private val contactItemLayout: Int) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var item: TextView = itemView.findViewById(R.id.contactNameCard) //product_row
+        var item: TextView = itemView.findViewById(R.id.contactNameCard)
+        var item2: TextView = itemView.findViewById(R.id.contactPhoneNumber)
     }
 }

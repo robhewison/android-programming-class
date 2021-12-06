@@ -49,14 +49,14 @@ class MainFragment : Fragment() {
         //TODO: ADD BUTTON FUNCTIONALITY
         binding.addButton.setOnClickListener {
             val name = binding.contactName.text.toString()
-            val phoneNum = binding.personPhoneNum.text.toString()
+            val phoneNumString = binding.personPhoneNum.text.toString()
+            val phoneNum = Integer.parseInt(phoneNumString)
 
-            if (name != "" && phoneNum != "") {
-                val contact = Contact(name, Integer.parseInt(phoneNum))
+            if (name != "" && phoneNumString != "") {
+                val contact = Contact(name, phoneNum) //Integer.parseInt(phoneNum)
                 viewModel.insertContact(contact)
                 clearFields()
             } else {
-                //binding.productID.text = "Incomplete information"
                 //TODO: Notify user somehow that the name or phone number were empty
             }
         }
@@ -64,17 +64,21 @@ class MainFragment : Fragment() {
         //TODO: FIND BUTTON FUNCTIONALITY
         binding.findButton.setOnClickListener {
             viewModel.findContact(binding.contactName.text.toString())
+
+
             //TODO: find contactName and phoneNumber to put in cardView recyclerview
         }
 
         //TODO: ASC BUTTON FUNCTIONALITY
         binding.ascButton.setOnClickListener {
             //TODO: display contacts in ascending order
+            viewModel.getAscContacts()
         }
 
         //TODO: DESC BUTTON FUNCTIONALITY
         binding.descButton.setOnClickListener {
             //TODO: display contacts in descending order
+            viewModel.getDescContacts()
         }
 
         //TODO: DELETE BUTTON FUNCTIONALITY (TRASH CAN... DO THIS LAST)
@@ -89,8 +93,6 @@ class MainFragment : Fragment() {
 
     private fun observerSetup() {
 
-        //TODO: Find out what to do here...
-
         viewModel.getAllContacts()?.observe(this, Observer { contacts ->
             contacts?.let  {
                 adapter?.setContactList(it)
@@ -101,26 +103,21 @@ class MainFragment : Fragment() {
 
             contacts?.let {
                 if (it.isNotEmpty()) {
-                    //binding.productID.text = String.format(Locale.US, "%d", it[0].id)
-                    //binding.contactName.setText(it[0].contactName)
-                    //binding.personPhoneNum.setText(String.format(Locale.US, "%d",
-                        //it[0].quantity))
+
                 } else {
-                    //binding.productID.text = "No Match"
+
                 }
             }
         })
     }
 
     private fun recyclerSetup() {
-        //TODO: I think to use card view you would replace the adapter below with card view
         adapter = ContactListAdapter(R.layout.card_layout)
         binding.productRecycler.layoutManager = LinearLayoutManager(context)
         binding.productRecycler.adapter = adapter
     }
 
     private fun clearFields() {
-        //binding.productID.text = ""
         binding.contactName.setText("")
         binding.personPhoneNum.setText("")
     }

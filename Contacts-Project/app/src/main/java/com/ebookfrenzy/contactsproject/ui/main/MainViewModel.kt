@@ -10,7 +10,7 @@ import com.ebookfrenzy.contactsproject.ContactRepository
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: ContactRepository = ContactRepository(application)
-    private val allContacts: LiveData<List<Contact>>?
+    private var allContacts: LiveData<List<Contact>>?
     private val searchResults: MutableLiveData<List<Contact>>
 
     init {
@@ -35,6 +35,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getAllContacts(): LiveData<List<Contact>>? {
+        return allContacts
+    }
+
+    fun getAscContacts(): LiveData<List<Contact>>? {
+        repository.getAscContacts()
+        allContacts = repository.allContacts
+        return allContacts
+    }
+
+    fun getDescContacts(): LiveData<List<Contact>>? {
+        repository.getDescContacts()
+        allContacts = repository.allContacts
         return allContacts
     }
 }

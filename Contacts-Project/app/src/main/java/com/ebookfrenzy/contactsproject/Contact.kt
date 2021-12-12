@@ -15,15 +15,15 @@ class Contact {
 
     @ColumnInfo(name = "contactName")
     var contactName: String? = null
-    var phoneNumber: Int = 0
+    var phoneNumber: Long = 0              //var phoneNumber: Int = 0
 
     constructor() {}
 
-    constructor(id: Int, contactName: String, phoneNumber: Int) {
+    constructor(id: Int, contactName: String, phoneNumber: Long) {
         this.contactName = contactName
         this.phoneNumber = phoneNumber
     }
-    constructor(contactName: String, phoneNumber: Int) {
+    constructor(contactName: String, phoneNumber: Long) {
         this.contactName = contactName
         this.phoneNumber = phoneNumber
     }

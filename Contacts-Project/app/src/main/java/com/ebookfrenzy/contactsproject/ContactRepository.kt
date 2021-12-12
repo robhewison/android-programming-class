@@ -27,6 +27,10 @@ class ContactRepository(application: Application) {
         allContacts = contactDao?.getDescContacts()
     }
 
+    fun findContact(name: String) {
+        allContacts = contactDao?.findContact(name)
+    }
+
     fun insertContact(newcontact: Contact) {
         coroutineScope.launch(Dispatchers.IO) {
             asyncInsert(newcontact)
@@ -47,18 +51,28 @@ class ContactRepository(application: Application) {
         contactDao?.deleteContact(id)
     }
 
-    fun findContact(name: String) {
+    /*
+        fun findContact(name: String) {
 
         coroutineScope.launch(Dispatchers.Main) {
             searchResults.value = asyncFind(name).await()
         }
     }
 
-    private suspend fun asyncFind(name: String): Deferred<List<Contact>?> =
+     */
+
+    /*
+        private suspend fun asyncFind(name: String): Deferred<List<Contact>?> =
 
         coroutineScope.async(Dispatchers.IO) {
             return@async contactDao?.findContact(name)
         }
+
+
+     */
+
+
+
 
 
 

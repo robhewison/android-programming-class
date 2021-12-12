@@ -1,5 +1,6 @@
 package com.ebookfrenzy.contactsproject.ui.main
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,9 @@ import com.ebookfrenzy.contactsproject.Contact
 import java.util.*
 
 import com.ebookfrenzy.contactsproject.databinding.MainFragmentBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import android.widget.Toast
+
 
 class MainFragment : Fragment() {
 
@@ -46,18 +50,17 @@ class MainFragment : Fragment() {
 
     private fun listenerSetup() {
 
-        //TODO: ADD BUTTON FUNCTIONALITY
         binding.addButton.setOnClickListener {
             val name = binding.contactName.text.toString()
             val phoneNumString = binding.personPhoneNum.text.toString()
-            val phoneNum = Integer.parseInt(phoneNumString)
 
             if (name != "" && phoneNumString != "") {
+                val phoneNum = phoneNumString.toLong()
                 val contact = Contact(name, phoneNum) //Integer.parseInt(phoneNum)
                 viewModel.insertContact(contact)
                 clearFields()
             } else {
-                //TODO: Notify user somehow that the name or phone number were empty
+               Toast.makeText(this.context, "ENTER NAME AND PHONE NUMBER", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -65,8 +68,6 @@ class MainFragment : Fragment() {
         binding.findButton.setOnClickListener {
             viewModel.findContact(binding.contactName.text.toString())
 
-
-            //TODO: find contactName and phoneNumber to put in cardView recyclerview
         }
 
         //TODO: ASC BUTTON FUNCTIONALITY

@@ -1,6 +1,7 @@
 package com.ebookfrenzy.contactsproject.ui.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,8 +23,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         repository.insertContact(contact)
     }
 
-    fun findContact(name: String) {
+    fun findContact(name: String): LiveData<List<Contact>>? {
         repository.findContact(name)
+        Log.d("repo", name)
+        allContacts = repository.allContacts
+        return allContacts
     }
 
     fun deleteContact(id: Int) {

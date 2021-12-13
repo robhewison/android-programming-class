@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ebookfrenzy.contactsproject.Contact
 import com.ebookfrenzy.contactsproject.R
 
+
 class ContactListAdapter(private val contactItemLayout: Int) :
     RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
+
 
     companion object {
         private var contactList: List<Contact>? = null
@@ -26,7 +28,6 @@ class ContactListAdapter(private val contactItemLayout: Int) :
         }
     }
 
-    //replaced contactItemLayout with R.layout.card_layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -46,5 +47,12 @@ class ContactListAdapter(private val contactItemLayout: Int) :
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var item: TextView = itemView.findViewById(R.id.contactNameCard)
         var item2: TextView = itemView.findViewById(R.id.contactPhoneNumber)
+
     }
+
 }
+
+
+
+
+

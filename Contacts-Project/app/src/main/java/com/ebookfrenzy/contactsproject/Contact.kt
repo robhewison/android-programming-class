@@ -15,7 +15,7 @@ class Contact {
 
     @ColumnInfo(name = "contactName")
     var contactName: String? = null
-    var phoneNumber: Long = 0              //var phoneNumber: Int = 0
+    var phoneNumber: Long = 0
 
     constructor() {}
 

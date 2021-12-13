@@ -64,25 +64,20 @@ class MainFragment : Fragment() {
             }
         }
 
-        //TODO: FIND BUTTON FUNCTIONALITY
         binding.findButton.setOnClickListener {
             viewModel.findContact(binding.contactName.text.toString())
 
         }
 
-        //TODO: ASC BUTTON FUNCTIONALITY
         binding.ascButton.setOnClickListener {
-            //TODO: display contacts in ascending order
             viewModel.getAscContacts()
         }
 
-        //TODO: DESC BUTTON FUNCTIONALITY
         binding.descButton.setOnClickListener {
-            //TODO: display contacts in descending order
             viewModel.getDescContacts()
         }
 
-        //TODO: DELETE BUTTON FUNCTIONALITY (TRASH CAN... DO THIS LAST)
+        //TODO: DELETE BUTTON FUNCTIONALITY
         /*
             binding.deleteButton.setOnClickListener {
             viewModel.deleteContact(binding.contactName.text.toString())
@@ -111,6 +106,7 @@ class MainFragment : Fragment() {
             }
         })
     }
+
 
     private fun recyclerSetup() {
         adapter = ContactListAdapter(R.layout.card_layout)

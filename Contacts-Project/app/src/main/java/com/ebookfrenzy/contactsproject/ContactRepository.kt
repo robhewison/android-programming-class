@@ -10,7 +10,7 @@ class ContactRepository(application: Application) {
     val searchResults = MutableLiveData<List<Contact>>()
     private var contactDao: ContactDao?
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
-    var allContacts: LiveData<List<Contact>>? //val to var
+    var allContacts: LiveData<List<Contact>>?
 
     init {
         val db: ContactRoomDatabase? =
@@ -37,21 +37,31 @@ class ContactRepository(application: Application) {
         }
     }
 
-    private suspend fun asyncInsert(contact: Contact) {
-        contactDao?.insertContact(contact)
-    }
-
     fun deleteContact(id: Int) {
         coroutineScope.launch(Dispatchers.IO) {
             asyncDelete(id)
         }
     }
 
+    private suspend fun asyncInsert(contact: Contact) {
+        contactDao?.insertContact(contact)
+    }
+
+
+
     private suspend fun asyncDelete(id: Int) {
         contactDao?.deleteContact(id)
     }
 
     /*
+       fun deleteContact(id: Int) {
+        coroutineScope.launch(Dispatchers.IO) {
+            asyncDelete(id)
+        }
+    }
+
+
+
         fun findContact(name: String) {
 
         coroutineScope.launch(Dispatchers.Main) {
